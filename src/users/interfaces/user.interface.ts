@@ -4,6 +4,5 @@ export interface User {
   email: string;
   cpf: number;
   celular: number;
-  conhecimentos: string[];
   validado: boolean;
 }

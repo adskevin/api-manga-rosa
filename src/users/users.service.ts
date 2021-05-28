@@ -1,52 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './interfaces/user.interface';
+import { InjectModel } from '@nestjs/sequelize';
+import { User } from './user.model';
 
 @Injectable()
 export class UsersService {
-  create(user: User): User {
-    return {
-      id: 123,
-      nome: user.nome,
-      email: user.email,
-      cpf: user.cpf,
-      celular: user.celular,
-      conhecimentos: user.conhecimentos,
-      validado: false,
-    };
+  constructor(
+    @InjectModel(User)
+    private userModel: typeof User,
+  ) {}
+
+  create(user: User): Promise<User> {
+    return this.userModel.create(user);
   }
 
-  findAll(): User[] {
-    return [
-      {
-        id: 123,
-        nome: 'kevin 1',
-        email: 'kevin1@teste',
-        cpf: 123456789,
-        celular: 123456789,
-        conhecimentos: ['js', 'php', 'node'],
-        validado: true,
-      },
-      {
-        id: 124,
-        nome: 'kevin 2',
-        email: 'kevin2@teste',
-        cpf: 987654321,
-        celular: 987654321,
-        conhecimentos: ['react', 'php', 'laravel'],
-        validado: false,
-      },
-    ];
+  findAll(): Promise<User[]> {
+    return this.userModel.findAll();
   }
 
-  findOne(id: number): User {
-    return {
-      id: id,
-      nome: 'kevin 2',
-      email: 'kevin2@teste',
-      cpf: 987654321,
-      celular: 987654321,
-      conhecimentos: ['react', 'php', 'laravel'],
-      validado: false,
-    };
+  findOne(id: string): Promise<User> {
+    return this.userModel.findByPk(id);
   }
 }

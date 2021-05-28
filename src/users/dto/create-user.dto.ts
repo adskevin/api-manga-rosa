@@ -1,8 +1,7 @@
 export class CreateUserDto {
   readonly nome: string;
   readonly email: string;
-  readonly cpf: number;
-  readonly celular: number;
-  readonly conhecimentos: string[];
+  readonly cpf: string;
+  readonly celular: string;
   readonly validado: boolean;
 }
