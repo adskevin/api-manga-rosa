@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Param } from '@nestjs/common';
+import { Controller, Post, Get, Put, Body, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.model';
 
@@ -19,5 +19,10 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string): Promise<User> {
     return this.usersService.findOne(id);
+  }
+
+  @Put(':id/:action')
+  validate(@Param() params: string[]): Promise<User> {
+    return this.usersService.validate(params);
   }
 }

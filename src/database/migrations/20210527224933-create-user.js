@@ -33,6 +33,14 @@ module.exports = {
         allowNull: false,
         defaultValue: false,
       },
+      conhecimentos: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      validatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
       createdAt: {
         type: Sequelize.DATE,
       },

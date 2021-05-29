@@ -14,6 +14,9 @@ export class User extends Model {
   @Column
   celular: string;
 
+  @Column
+  conhecimentos: string;
+
   @Column({ defaultValue: false })
   validado: boolean;
 }

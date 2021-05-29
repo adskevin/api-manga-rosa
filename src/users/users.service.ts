@@ -20,4 +20,21 @@ export class UsersService {
   findOne(id: string): Promise<User> {
     return this.userModel.findByPk(id);
   }
+
+  async validate(params: string[]): Promise<User> {
+    const id = params['id'];
+    const action = params['action'];
+    const user = await this.userModel.findByPk(id);
+    switch (action) {
+      case 'validate':
+        user.validado = true;
+        break;
+      case 'invalidate':
+        user.validado = false;
+        break;
+      default:
+        return;
+    }
+    return user.save();
+  }
 }
